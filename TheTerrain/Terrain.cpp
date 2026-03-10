@@ -16,15 +16,15 @@ Terrain::Terrain(ID3D11Device* device, ID3D11DeviceContext* deviceContext, int r
 			float uvX = j * uvWidth;
 			float uvY = i * uvHeight;
 
-			Patch* temp = new Patch(device, deviceContext, L"604.jpg", j * PATCHWIDTH, i * -(PATCHHEIGHT), uvX, uvY, uvWidth, uvHeight);
+			Patch* temp = new Patch(device, deviceContext, L"assets/textures/604.jpg", j * PATCHWIDTH, i * -(PATCHHEIGHT), uvX, uvY, uvWidth, uvHeight);
 
 			patches.push_back(temp);
 		}
 	}
 
 	// Load heightmap texture
-	rockTexture = new Texture(device, deviceContext, L"./res/rock.jpg");
-	snowTexture = new Texture(device, deviceContext, L"./res/snow.jpg");
+	rockTexture = new Texture(device, deviceContext, L"assets/textures/rock.jpg");
+	snowTexture = new Texture(device, deviceContext, L"assets/textures/snow.jpg");
 }
 
 Terrain::~Terrain()

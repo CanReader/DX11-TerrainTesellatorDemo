@@ -26,14 +26,14 @@ void TheApp::init(HINSTANCE hinstance, HWND hwnd, int screenWidth, int screenHei
 	m_CameraFrustum = new CameraFrustum();
 	m_CameraFrustum->Initialise(SCREEN_DEPTH);
 
-	m_Skybox = new Skybox(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), L"./res/sky.jpg");
+	m_Skybox = new Skybox(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), L"assets/textures/sky.jpg");
 
 	m_Sunlight = new Light;
 	m_Sunlight->SetDiffuseColour(1.0f, 0.6f, 0.3f, 1.0f);
 	m_Sunlight->SetAmbientColour(0.4f, 0.3f, 0.3f, 1.0f);
 	m_Sunlight->SetPosition(470.0f, 120.0f, -500.0f);
 	m_Sunlight->SetLookAt(250.0f, 50.0f, -150.0f);
-	m_LightSphere = new SphereMesh(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), L"./res/snow.jpg");
+	m_LightSphere = new SphereMesh(m_Direct3D->GetDevice(), m_Direct3D->GetDeviceContext(), L"assets/textures/snow.jpg");
 
 	m_Sunlight->GenerateViewMatrix();
 	m_Sunlight->GenerateProjectionMatrix(1.0f, 500.0f);
@@ -172,7 +172,7 @@ bool TheApp::Render()
 
 	// Test object occlusion for culling
 	//OcclusionTest();
-	
+
 	// Final frame render
 	RenderScene();	
 
@@ -327,16 +327,18 @@ void TheApp::RenderShadowMap()
 	//// Send geometry data (from terrain)
 	const std::vector<Patch*> localVec = m_Terrain->Patches();
 	std::vector<Patch*>::const_iterator i = localVec.begin();
+	int patchIdx = 0;
 	while (i != localVec.end())
 	{
 		(*i)->SendData(m_Direct3D->GetDeviceContext());
 		//// Set shader parameters (matrices and texture)
-		m_DepthShader->SetShaderParameters(m_Direct3D->GetDeviceContext(), worldMatrix, lightViewMatrix, lightProjectionMatrix, 
+		m_DepthShader->SetShaderParameters(m_Direct3D->GetDeviceContext(), worldMatrix, lightViewMatrix, lightProjectionMatrix,
 										   m_Camera, m_MultifractalData, tessDistNear, tessDistFar);
 		//// Render object (combination of mesh geometry and shader process
 		m_DepthShader->Render(m_Direct3D->GetDeviceContext(), (*i)->GetIndexCount());
 
 		i++;
+		patchIdx++;
 	}
 
 	// Reset the render target back to the original back buffer and not the render to texture anymore.

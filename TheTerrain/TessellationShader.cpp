@@ -4,7 +4,7 @@
 
 TessellationShader::TessellationShader(ID3D11Device* device, HWND hwnd) : BaseShader(device, hwnd)
 {
-	InitShader(L"shaders/tessellation_vs.hlsl", L"shaders/tessellation_hs.hlsl", L"shaders/tessellation_ds.hlsl", L"shaders/tessellation_ps.hlsl");
+	InitShader(L"assets/shaders/tessellation_vs.hlsl", L"assets/shaders/tessellation_hs.hlsl", L"assets/shaders/tessellation_ds.hlsl", L"assets/shaders/tessellation_ps.hlsl");
 }
 
 

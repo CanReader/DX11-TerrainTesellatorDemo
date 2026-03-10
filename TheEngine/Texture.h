@@ -3,10 +3,8 @@
 #define _TEXTURE_H_
 
 #include <d3d11.h>
-//#include <DDSTextureLoader.h>
-#include "../DirectXTK/Inc/DDSTextureLoader.h"
-#include "../DirectXTK/Inc/WICTextureLoader.h"
-//#include <WICTextureLoader.h>
+#include <DDSTextureLoader.h>
+#include <WICTextureLoader.h>
 #include <string>
 #include <fstream>
 
@@ -22,6 +20,7 @@ public:
 
 private:
 	bool does_file_exist(const WCHAR *fileName);
+	bool createFallbackTexture(ID3D11Device* device);
 
 	ID3D11ShaderResourceView* m_texture;
 };

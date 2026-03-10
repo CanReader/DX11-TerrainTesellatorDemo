@@ -4,7 +4,7 @@
 
 DepthShader::DepthShader(ID3D11Device* device, HWND hwnd) : BaseShader(device, hwnd)
 {
-	InitShader(L"shaders/depth_vs.hlsl", L"shaders/depth_hs.hlsl", L"shaders/depth_ds.hlsl", L"shaders/depth_ps.hlsl");
+	InitShader(L"assets/shaders/depth_vs.hlsl", L"assets/shaders/depth_hs.hlsl", L"assets/shaders/depth_ds.hlsl", L"assets/shaders/depth_ps.hlsl");
 }
 
 
