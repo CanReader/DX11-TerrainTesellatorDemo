@@ -1,0 +1,25 @@
+# Build outputs
+Bin/
+build/
+Intermediate/
+*.lib
+*.exe
+*.pdb
+*.obj
+*.ilk
+*.idb
+*.log
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.sdf
+*.opensdf
+*.VC.db
+*.VC.opendb
+ipch/
+
+# Generated files
+shader-error.txt
+imgui.ini
