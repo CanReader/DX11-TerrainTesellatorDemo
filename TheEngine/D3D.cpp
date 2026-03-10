@@ -7,7 +7,8 @@ D3D::D3D(int screenWidth, int screenHeight, bool vsync, HWND hwnd, bool fullscre
 	IDXGIFactory* factory;
 	IDXGIAdapter* adapter;
 	IDXGIOutput* adapterOutput;
-	unsigned int numModes, i, numerator, denominator, stringLength;
+	unsigned int numModes, i, numerator = 0, denominator = 1;
+	size_t stringLength;
 	DXGI_MODE_DESC* displayModeList;
 	DXGI_ADAPTER_DESC adapterDesc;
 	DXGI_SWAP_CHAIN_DESC swapChainDesc;
@@ -142,8 +143,13 @@ D3D::D3D(int screenWidth, int screenHeight, bool vsync, HWND hwnd, bool fullscre
 	featureLevel = D3D_FEATURE_LEVEL_11_0;
 
 	// Create the swap chain, Direct3D device, and Direct3D device context.
-	D3D11CreateDeviceAndSwapChain(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, NULL, &featureLevel, 1, D3D11_SDK_VERSION, &swapChainDesc, &m_swapChain, &m_device, NULL, &m_deviceContext);
-		
+	HRESULT result = D3D11CreateDeviceAndSwapChain(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, NULL, &featureLevel, 1, D3D11_SDK_VERSION, &swapChainDesc, &m_swapChain, &m_device, NULL, &m_deviceContext);
+	if (FAILED(result))
+	{
+		MessageBox(hwnd, L"Failed to create D3D11 device and swap chain.", L"DirectX Error", MB_OK);
+		return;
+	}
+
 	// Get the pointer to the back buffer.
 	m_swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&backBufferPtr);
 	

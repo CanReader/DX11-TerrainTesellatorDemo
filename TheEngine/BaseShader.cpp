@@ -6,6 +6,14 @@ BaseShader::BaseShader(ID3D11Device* device, HWND hwnd)
 {
 	m_device = device;
 	m_hwnd = hwnd;
+	m_vertexShader = nullptr;
+	m_pixelShader = nullptr;
+	m_hullShader = nullptr;
+	m_domainShader = nullptr;
+	m_geometryShader = nullptr;
+	m_layout = nullptr;
+	m_matrixBuffer = nullptr;
+	m_sampleState = nullptr;
 }
 
 
