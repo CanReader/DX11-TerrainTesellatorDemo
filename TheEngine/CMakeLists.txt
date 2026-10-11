@@ -25,14 +25,16 @@ add_library(TheEngine STATIC
     Timer.cpp
     TokenStream.cpp
     TriangleMesh.cpp
+    ${CMAKE_SOURCE_DIR}/Vendors/DirectXTex/DDSTextureLoader11.cpp
+    ${CMAKE_SOURCE_DIR}/Vendors/DirectXTex/WICTextureLoader11.cpp
 )
 
 target_include_directories(TheEngine
     PUBLIC  ${CMAKE_CURRENT_SOURCE_DIR}
+            ${CMAKE_SOURCE_DIR}/Vendors/DirectXTex
 )
 
 target_link_libraries(TheEngine PUBLIC
-    DirectXTK
     d3d11.lib
     d3dcompiler.lib
     dxguid.lib

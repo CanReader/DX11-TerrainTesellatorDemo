@@ -1,0 +1,4 @@
+Vendors/** linguist-vendored
+TheEngine/imgui* linguist-vendored
+TheEngine/imconfig.h linguist-vendored
+TheEngine/stb_*.h linguist-vendored
