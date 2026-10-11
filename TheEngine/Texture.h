@@ -3,8 +3,8 @@
 #define _TEXTURE_H_
 
 #include <d3d11.h>
-#include <DDSTextureLoader.h>
-#include <WICTextureLoader.h>
+#include <DDSTextureLoader11.h>
+#include <WICTextureLoader11.h>
 #include <string>
 #include <fstream>
 
