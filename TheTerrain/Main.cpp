@@ -1,5 +1,6 @@
 #include "System.h"
 #include "TheApp.h"
+#include <objbase.h>
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdline, int iCmdshow)
 {
@@ -10,6 +11,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdline,
 	if (lastSlash) *lastSlash = L'\0';
 	SetCurrentDirectoryW(exePath);
 
+	// the WIC texture loader needs COM
+	if (FAILED(CoInitializeEx(nullptr, COINIT_MULTITHREADED)))
+		return 1;
+
 	TheApp* app = new TheApp();
 	System* m_System = new System(app);
 
@@ -18,5 +23,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pScmdline,
 	delete m_System;
 	m_System = 0;
 
+	CoUninitialize();
 	return 0;
 }
